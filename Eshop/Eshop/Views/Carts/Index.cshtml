@@ -9,6 +9,7 @@
         <div class="breadcrumbs">
            
                <h1>Đặt hàng</h1>
+            <h1>@ViewBag.msg</h1>
            
         </div>
         <div class="table-responsive cart_info">
@@ -61,9 +62,14 @@
                         <td class="text-right">
                             <a asp-action="DeteleAll" class="btn btn-warning" onsubmit="return confirm('bạn có chắc chắn hông suy nghĩ kĩ đi  ta chỉ sống 1 lần trong đời')">Xóa hết</a>
                         </td>
-                        <td class="text-right">
-                            <a asp-action="Purchase" class="btn btn-success">Thanh toán </a>
+                        <td class="text-right ">
+                            <a asp-action="Purchase" class="btn btn-success" >Thanh toán </a>
                         </td>
+                        
+                        @if (@Model.Sum(u => u.Product.Price * u.Quantity)==0)
+                        {
+                            @ViewBag.msg;
+                        }
                     </tr>
                 </tfoot>
             </table>

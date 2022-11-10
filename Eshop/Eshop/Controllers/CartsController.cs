@@ -12,6 +12,7 @@ using Eshop.Helpers;
 using Microsoft.CodeAnalysis;
 using NuGet.Protocol;
 using System.Xml.Linq;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 
 namespace Eshop.Controllers
 {
@@ -220,12 +221,12 @@ namespace Eshop.Controllers
         public IActionResult AddToCart(int Id)
         {
             //lấy id thằng đăng nhập
-            int?  id = HttpContext.Session.GetInt32("UserId");
+            int? id = HttpContext.Session.GetInt32("UserId");
             //lấy giỏ hàng của thằng đăng nhập
             //var carts = _context.Carts.Include(c => c.Product).Include(c => c.Account).Where(u => u.Account.Id == id).ToList();
             //kiểm tra các sản phẩm trong giỏ hàng
             var item = _context.Carts.Include(c => c.Product).FirstOrDefault(u => u.AccountId == id);
-            var item2 = _context.Carts.FirstOrDefault(u => u.ProductId == Id &&u.AccountId==id);
+            var item2 = _context.Carts.FirstOrDefault(u => u.ProductId == Id && u.AccountId == id);
             var productDetail = _context.Products.FirstOrDefault(u => u.Id == Id);
 
             if (item != null)
@@ -249,13 +250,13 @@ namespace Eshop.Controllers
             else
             {
                 //tạo mới đối tượng cart item
-                
+
                 var item3 = new Cart();
 
-                item3.AccountId= id.Value;
+                item3.AccountId = id.Value;
                 item3.ProductId = Id;
                 item3.Quantity = 1;
-               
+
                 _context.Carts.Add(item3);
             }
             _context.SaveChanges();
@@ -269,47 +270,62 @@ namespace Eshop.Controllers
         [HttpPost]
         public IActionResult Purchase(string Address, string Phone)
         {
-            var id = HttpContext.Session.GetInt32("UserId");
-            //include account product vao cart
-            var carts = _context.Carts.Include(c => c.Product).Include(c => c.Account).Where(u => u.Account.Id == id);
-            var accountid = _context.Accounts.FirstOrDefault(u => u.Id == id);
-            var total = carts.Sum(u => u.Product.Price * u.Quantity);
+
+            //if (string.IsNullOrEmpty(Address) && string.IsNullOrEmpty(Phone))
+            //{
+            //    ViewBag.msg = "Ko có gì đẻ thanh toán cả";
+            //    return RedirectToAction("Index", "Carts");
+            //}
+
             //thêm  hóa đơn 
-            var invoice = new Invoice
+            if (ModelState.IsValid)
             {
-                Code = DateTime.Now.ToString("yyyyMMddhhmmss"),
-                AccountId = accountid.Id,
-                IssuedDate = DateTime.Now,
-                ShippingAddress = Address,
-                ShippingPhone = Phone,
-                Total = total,
-                Status = true,
+                ViewBag.errormsg = "Ko có gì đẻ thanh toán cả";
 
-            };
-            _context.Invoices.Add(invoice);
-            _context.SaveChanges();
-
-
-            //thêm vào chi tiết hóa đơn
-            foreach (var item in carts)
-            {
-                InvoiceDetail detail = new InvoiceDetail
-                {
-                    InvoiceId = invoice.Id,
-                    ProductId = item.ProductId,
-                    Quantity = item.Quantity,
-                    UnitPrice = item.Product.Price,
-                };
-                _context.InvoiceDetails.Add(detail);
-
-                //giảm số lượng sản phẩm trong product khi thanh toán
-                item.Product.Stock -= item.Quantity;
-                _context.Products.Update(item.Product);
-                _context.Carts.Remove(item);
+                return RedirectToAction("Index", "Products");
             }
-            _context.SaveChanges();
-            //ViewBag.Message = "<script>alert('Thanh toán thành công');</script>";
-            TempData["alertMessage"] = "Whatever you want to alert the user with";
+            else
+            {
+                var id = HttpContext.Session.GetInt32("UserId");
+                //include account product vao cart
+                var carts = _context.Carts.Include(c => c.Product).Include(c => c.Account).Where(u => u.Account.Id == id);
+                var _account = _context.Accounts.FirstOrDefault(u => u.Id == id);
+                var total = carts.Sum(u => u.Product.Price * u.Quantity);
+                var invoice = new Invoice
+                {
+                    Code = DateTime.Now.ToString("yyyyMMddhhmmss"),
+                    AccountId = _account.Id,
+                    IssuedDate = DateTime.Now,
+                    ShippingAddress = Address,
+                    ShippingPhone = Phone,
+                    Total = total,
+                    Status = true,
+
+                };
+                _context.Invoices.Add(invoice);
+                _context.SaveChanges();
+
+
+                //thêm vào chi tiết hóa đơn
+                foreach (var item in carts)
+                {
+                    InvoiceDetail detail = new InvoiceDetail
+                    {
+                        InvoiceId = invoice.Id,
+                        ProductId = item.ProductId,
+                        Quantity = item.Quantity,
+                        UnitPrice = item.Product.Price,
+                    };
+                    _context.InvoiceDetails.Add(detail);
+
+                    //giảm số lượng sản phẩm trong product khi thanh toán
+                    item.Product.Stock -= item.Quantity;
+                    _context.Products.Update(item.Product);
+                    _context.Carts.Remove(item);
+                }
+                _context.SaveChanges();
+                ViewBag.msg = "Đặt hàng thành công!";
+            }
             return RedirectToAction("Index", "Products");
 
         }

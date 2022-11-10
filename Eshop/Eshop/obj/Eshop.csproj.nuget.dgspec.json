@@ -1,20 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Kiemthuphanmem\\Đồ án ver 2\\Eshop\\Eshop\\Eshop.csproj": {}
+    "G:\\HocKi_3\\ASP.net\\Đồ án ver 2\\Eshop\\Eshop\\Eshop.csproj": {}
   },
   "projects": {
-    "D:\\Kiemthuphanmem\\Đồ án ver 2\\Eshop\\Eshop\\Eshop.csproj": {
+    "G:\\HocKi_3\\ASP.net\\Đồ án ver 2\\Eshop\\Eshop\\Eshop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Kiemthuphanmem\\Đồ án ver 2\\Eshop\\Eshop\\Eshop.csproj",
+        "projectUniqueName": "G:\\HocKi_3\\ASP.net\\Đồ án ver 2\\Eshop\\Eshop\\Eshop.csproj",
         "projectName": "Eshop",
-        "projectPath": "D:\\Kiemthuphanmem\\Đồ án ver 2\\Eshop\\Eshop\\Eshop.csproj",
-        "packagesPath": "C:\\Users\\sanmg\\.nuget\\packages\\",
-        "outputPath": "D:\\Kiemthuphanmem\\Đồ án ver 2\\Eshop\\Eshop\\obj\\",
+        "projectPath": "G:\\HocKi_3\\ASP.net\\Đồ án ver 2\\Eshop\\Eshop\\Eshop.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "G:\\HocKi_3\\ASP.net\\Đồ án ver 2\\Eshop\\Eshop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sanmg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +23,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\DevExpress\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -82,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

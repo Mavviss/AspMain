@@ -26,9 +26,12 @@ namespace Eshop.Models
         public DateTime IssuedDate { get; set; } = DateTime.Now;
 
         [DisplayName("Địa chỉ giao hàng")]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
         public string ShippingAddress { get; set; }
 
         [DisplayName("SĐT giao hàng")]
+        [Required(ErrorMessage = "{0} không được bỏ trống")]
+        [RegularExpression("0\\d{9}", ErrorMessage = "SĐT không hợp lệ")]
         public string ShippingPhone { get; set; }
 
         [DisplayName("Tổng tiền")]
