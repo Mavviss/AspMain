@@ -1,0 +1,22 @@
+﻿@model Cart
+@{
+    Layout = "_Cart";
+    
+}
+    
+<form asp-action="Purchase" class="form-group">
+    <div class="row ">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Nhập địa chỉ giao hàng" name="Address" asp>
+        </div>
+        <div class="col">
+
+            <input type="text" class="form-control" placeholder="Nhập số điện thoại giao hàng" name="Phone">
+        </div>
+    </div>
+
+    
+    <button class="btn btn-success row" onclick=" return alert(@ViewBag.msg);">Đặt hàng</button>
+</form>
+
+

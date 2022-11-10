@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Eshop.Models.Cart>
+
+@{
+    Layout = "_Cart";
+}
+
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+           
+               <h1>Đặt hàng</h1>
+            <h1>@ViewBag.msg</h1>
+           
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Hình ảnh</td>
+                        <td class="description">Tên sản phẩm</td>
+                        <td class="price">Giá</td>
+                        <td class="quantity">Số lượng</td>
+                        <td class="total">Total</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="cart_product">
+                                <a href=""><img src="images/cart/one.png" alt=""></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4>@item.Product.Name</h4>
+
+                            </td>
+                            <td class="cart_price">
+                                <p>@item.Product.Price</p>
+                            </td>
+                            <td class="cart_quantity">
+                                <div class="cart_quantity_button">
+                                   <p>@item.Quantity</p>
+                                </div>
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price"> @(item.Product.Price * item.Quantity)</p>
+                            </td>
+                            <td>
+                                <a asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-warning" style="background-color:#FE980F">xóa</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot >
+                    <tr>
+                        <td  class="text-right" >
+                            <h4>Tổng tiền:@Model.Sum(u=>u.Product.Price* u.Quantity).ToString() </h4> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">
+                            <a asp-action="DeteleAll" class="btn btn-warning" onsubmit="return confirm('bạn có chắc chắn hông suy nghĩ kĩ đi  ta chỉ sống 1 lần trong đời')">Xóa hết</a>
+                        </td>
+                        <td class="text-right ">
+                            <a asp-action="Purchase" class="btn btn-success" >Thanh toán </a>
+                        </td>
+                        
+                        @if (@Model.Sum(u => u.Product.Price * u.Quantity)==0)
+                        {
+                            @ViewBag.msg;
+                        }
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</section>
