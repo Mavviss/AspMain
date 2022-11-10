@@ -1,0 +1,39 @@
+﻿@{Layout ="_mainlayout";
+ViewData["Title"] = "Search";
+}
+@model IEnumerable<Product>
+
+
+@section User {
+ 
+	@if (ViewBag.User == "admin") {
+		<li><a asp-area="" asp-controller="Admin" asp-action="Index">Manage <i class="manage"></i></a></li>
+	}
+
+
+}
+	
+@foreach (var item in Model)
+{
+			<div class="col-sm-3">
+				<div class="product-image-wrapper">
+					<div class="single-products">
+						<div class="productinfo text-center">
+							<img src="~/images/@item.Image" style="width:100px; "/>
+							<h2>@item.Price</h2>
+							<p>@item.Name</p>
+							<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+						</div>
+						<div class="product-overlay">
+							<div class="overlay-content">
+								<h2>@item.Price</h2>
+								<p>@item.Name</p>
+								
+						<a asp-action="AddToCart" asp-controller="Carts" asp-route-Id="@item.Id" class="btn btn-default add-to-cart">Add to cart</a>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+}
