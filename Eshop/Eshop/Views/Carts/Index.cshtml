@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Eshop.Models.Cart>
+
+@{
+    ViewData["Title"] = "Index";
+    var user = ViewBag.UserId as Account;
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-info">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Hình ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Đơn giá</th>
+            <th>Tổng tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @*hình ảnh*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+
+                @*                <td>
+            <img src=" ~/img/product/@item.Product.Image" style=" width:120px">
+            </td>
+            *@
+                <td>
+                    @item.Product.Price.ToString()
+                </td>
+                <td>
+                    @(item.Product.Price * item.Quantity)
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4" class="text-right"><h7>Tổng tiền: </h7>
+                @Model.Sum(u=>u.Product.Price* u.Quantity).ToString()
+            </td>
+            <td>
+@*                <button  asp-action="Purchase" class="btn btn-success"> Thanh toán</button>
+*@                <form asp-action="DeleteAll" class="" onsubmit="return confirm('bạn có chắc chắn hông suy nghĩ kĩ đi  ta chỉ sống 1 lần trong đời')">
+                    <button class="btn btn-danger">Xóa hết</button>
+                </form>
+            </td>
+            <td>
+           
+                <button>
+                    <a asp-action="Purchase" class="btn btn-success">Thanh toán </a>
+                </button>
+            </td>
+        </tr>
+    </tfoot>
+</table>
