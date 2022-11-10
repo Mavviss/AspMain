@@ -10296,11 +10296,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Kiemthuphanmem\\Đồ án ver 2\\Eshop\\Eshop\\Eshop.csproj",
+      "projectUniqueName": "D:\\AspMain\\Eshop\\Eshop\\Eshop.csproj",
       "projectName": "Eshop",
-      "projectPath": "D:\\Kiemthuphanmem\\Đồ án ver 2\\Eshop\\Eshop\\Eshop.csproj",
+      "projectPath": "D:\\AspMain\\Eshop\\Eshop\\Eshop.csproj",
       "packagesPath": "C:\\Users\\sanmg\\.nuget\\packages\\",
-      "outputPath": "D:\\Kiemthuphanmem\\Đồ án ver 2\\Eshop\\Eshop\\obj\\",
+      "outputPath": "D:\\AspMain\\Eshop\\Eshop\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sanmg\\AppData\\Roaming\\NuGet\\NuGet.Config",
