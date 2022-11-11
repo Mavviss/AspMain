@@ -12,7 +12,9 @@ using Eshop.Helpers;
 using Microsoft.CodeAnalysis;
 using NuGet.Protocol;
 using System.Xml.Linq;
+
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
+
 
 namespace Eshop.Controllers
 {
@@ -278,12 +280,14 @@ namespace Eshop.Controllers
             //}
 
             //thêm  hóa đơn 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
+                
                 ViewBag.errormsg = "Ko có gì đẻ thanh toán cả";
 
-                return RedirectToAction("Index", "Products");
+                return RedirectToAction("Purchase", "Carts");
             }
+
             else
             {
                 var id = HttpContext.Session.GetInt32("UserId");
@@ -324,8 +328,13 @@ namespace Eshop.Controllers
                     _context.Carts.Remove(item);
                 }
                 _context.SaveChanges();
-                ViewBag.msg = "Đặt hàng thành công!";
             }
+
+            _context.SaveChanges();
+         
+            _context.SaveChanges();
+            //ViewBag.Message = "<script>alert('Thanh toán thành công');</script>";
+            TempData["alertMessage"] = "Whatever you want to alert the user with";
             return RedirectToAction("Index", "Products");
 
         }

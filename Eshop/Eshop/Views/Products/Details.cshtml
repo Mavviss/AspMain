@@ -4,6 +4,9 @@
     ViewData["Title"] = "Details";
     Layout = "_admin";
 }
+@{
+    var lstTypes = ViewBag.ProducTypes as List<ProductType>;
+}
 
 <div class="container-fluid">
     <h1 class="mt-4">Thông tin sản phẩm</h1>

@@ -7,10 +7,10 @@
 <section id="cart_items">
     <div class="container">
         <div class="breadcrumbs">
-           
-               <h1>Đặt hàng</h1>
+
+            <h1>Đặt hàng</h1>
             <h1>@ViewBag.msg</h1>
-           
+
         </div>
         <div class="table-responsive cart_info">
             <table class="table table-condensed">
@@ -40,7 +40,7 @@
                             </td>
                             <td class="cart_quantity">
                                 <div class="cart_quantity_button">
-                                   <p>@item.Quantity</p>
+                                    <p>@item.Quantity</p>
                                 </div>
                             </td>
                             <td class="cart_total">
@@ -52,23 +52,21 @@
                         </tr>
                     }
                 </tbody>
-                <tfoot >
+                <tfoot>
                     <tr>
-                        <td  class="text-right" >
-                            <h4>Tổng tiền:@Model.Sum(u=>u.Product.Price* u.Quantity).ToString() </h4> 
+                        <td class="text-right">
+                            <h4>Tổng tiền:@Model.Sum(u=>u.Product.Price* u.Quantity).ToString() </h4>
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-right">
-                            <a asp-action="DeteleAll" class="btn btn-warning" onsubmit="return confirm('bạn có chắc chắn hông suy nghĩ kĩ đi  ta chỉ sống 1 lần trong đời')">Xóa hết</a>
-                        </td>
-                        <td class="text-right ">
-                            <a asp-action="Purchase" class="btn btn-success" >Thanh toán </a>
-                        </td>
-                        
-                        @if (@Model.Sum(u => u.Product.Price * u.Quantity)==0)
+                        @if (Model.Count() > 0)
                         {
-                            @ViewBag.msg;
+                            <td class="text-right">
+                                <a asp-action="DeteleAll" class="btn btn-warning" onsubmit="return confirm('bạn có chắc chắn hông suy nghĩ kĩ đi  ta chỉ sống 1 lần trong đời')">Xóa hết</a>
+                            </td>
+                            <td class="text-right ">
+                                <a asp-action="Purchase" class="btn btn-success">Thanh toán </a>
+                            </td>
                         }
                     </tr>
                 </tfoot>

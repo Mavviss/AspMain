@@ -170,9 +170,9 @@ namespace Eshop.Controllers
             var accounts = _context.Accounts.FirstOrDefault(a => (account.Username == a.Username && account.Password == a.Password));
             if (accounts != null)
             {
+
                 HttpContext.Session.SetString("User", accounts.FullName);
                 HttpContext.Session.SetInt32("UserId", accounts.Id);
-
 
                 if (accounts.IsAdmin == true)
                 {
