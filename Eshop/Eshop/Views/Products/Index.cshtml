@@ -26,6 +26,7 @@ ViewData["Title"] = "Search";
 						</div>
 						<div class="product-overlay">
 							<div class="overlay-content">
+						<a href="@Url.Action("Details", "Products", new{ id = item.Id})">
 								<h2>@item.Price</h2>
 								<p>@item.Name</p>
 								

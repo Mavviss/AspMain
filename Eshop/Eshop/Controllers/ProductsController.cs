@@ -205,6 +205,7 @@ namespace Eshop.Controllers
             {
                 product = product.Where(p => p.Name.Contains(SearchString));
             }
+
             return View(product);
         }
 

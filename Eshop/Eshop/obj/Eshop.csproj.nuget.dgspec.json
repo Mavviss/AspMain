@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\AspMain\\Eshop\\Eshop\\Eshop.csproj": {}
+    "C:\\Users\\thuy9\\Source\\Repos\\AspMain\\Eshop\\Eshop\\Eshop.csproj": {}
   },
   "projects": {
-    "D:\\AspMain\\Eshop\\Eshop\\Eshop.csproj": {
+    "C:\\Users\\thuy9\\Source\\Repos\\AspMain\\Eshop\\Eshop\\Eshop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\AspMain\\Eshop\\Eshop\\Eshop.csproj",
+        "projectUniqueName": "C:\\Users\\thuy9\\Source\\Repos\\AspMain\\Eshop\\Eshop\\Eshop.csproj",
         "projectName": "Eshop",
-        "projectPath": "D:\\AspMain\\Eshop\\Eshop\\Eshop.csproj",
-        "packagesPath": "C:\\Users\\sanmg\\.nuget\\packages\\",
-        "outputPath": "D:\\AspMain\\Eshop\\Eshop\\obj\\",
+        "projectPath": "C:\\Users\\thuy9\\Source\\Repos\\AspMain\\Eshop\\Eshop\\Eshop.csproj",
+        "packagesPath": "C:\\Users\\thuy9\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thuy9\\Source\\Repos\\AspMain\\Eshop\\Eshop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sanmg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thuy9\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
