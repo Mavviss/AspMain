@@ -18,9 +18,10 @@ namespace Eshop.Controllers
     {
         private readonly EshopContext _context;
         private readonly IWebHostEnvironment _environment;
-        public AccountsController(EshopContext context)
+        public AccountsController(EshopContext context, IWebHostEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
 
         // GET: Accounts
@@ -91,6 +92,9 @@ namespace Eshop.Controllers
         {
             if (ModelState.IsValid)
             {
+                account.IsAdmin = false;
+                account.Status = true;
+                account.Avatar = "nor.jpg";
                 _context.Add(account);
 
                 await _context.SaveChangesAsync();
@@ -161,17 +165,18 @@ namespace Eshop.Controllers
             }
             return View(account);
         }
-      
-        public async Task<IActionResult> UserEdit(int id, [Bind("Id,Address,Avatar,Phone,Password,Email,FullName,UserName")] Account account, IFormFile file)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UserEdit(int id, [Bind("Id,Address,Avatar,Phone,Password,Email,FullName,Username,ImageFile")] Account account, IFormFile file)
 
         {
             if (id != account.Id)
             {
                 return NotFound();
             }
-            var accountID = await _context.Accounts.FindAsync(id);
+            var accountExit = await _context.Accounts.FindAsync(id);
 
-            if (account.Avatar != null)
+            if (account.ImageFile != null)
             {
                 var fileName = account.Id.ToString() + Path.GetExtension(account.ImageFile.FileName);
                 var uploadFolder = Path.Combine(_environment.WebRootPath, "images", "avatar");
@@ -181,19 +186,18 @@ namespace Eshop.Controllers
                     account.ImageFile.CopyTo(fs);
                     fs.Flush();
                 }
-                accountID.Avatar = fileName;
+                accountExit.Avatar = fileName;
 
             }
-            accountID.Status = account.Status;
-            accountID.Username = account.Username;
-            accountID.Password = account.Password;
-            accountID.Email = account.Email;
-            accountID.Address = account.Address;
-            accountID.Phone= account.Phone;
-            accountID.FullName= account.FullName;
-            _context.Accounts.Update(accountID);
+            accountExit.Status = account.Status;
+            accountExit.Username = account.Username;
+            accountExit.Email = account.Email;
+            accountExit.Address = account.Address;
+            accountExit.Phone= account.Phone;
+            accountExit.FullName= account.FullName;
+            _context.Accounts.Update(accountExit);
             _context.SaveChanges();
-            return RedirectToAction("UserDetails", "Account");
+            return RedirectToAction("UserDetails", "Accounts");
         }
         public async Task<IActionResult> Delete(int? id)
         {

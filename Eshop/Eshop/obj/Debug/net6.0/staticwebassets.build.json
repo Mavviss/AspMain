@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Uw5gyTDn/9sleBZ2091D5Rb9136A/jVnozOAMvTfFFg=",
+  "Hash": "vGVOKZtd6vzSrFWjANd0Y22q2mj7VBhgTsG5HMSRDgM=",
   "Source": "Eshop",
   "BasePath": "_content/Eshop",
   "Mode": "Default",
@@ -627,6 +627,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\admin.jpg"
+    },
+    {
+      "Identity": "D:\\Đồ án ver 2\\Eshop\\Eshop\\wwwroot\\images\\avatar\\2.jpg",
+      "SourceId": "Eshop",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ án ver 2\\Eshop\\Eshop\\wwwroot\\",
+      "BasePath": "_content/Eshop",
+      "RelativePath": "images/avatar/2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\avatar\\2.jpg"
     },
     {
       "Identity": "D:\\Đồ án ver 2\\Eshop\\Eshop\\wwwroot\\images\\blog\\blog-one.jpg",
